@@ -1,0 +1,124 @@
+{
+    "name": "WordPress to Facebook & LinkedIn with AI Summary",
+    "flow": [
+        {
+            "id": 1,
+            "module": "wordpress:watchPosts",
+            "version": 3,
+            "parameters": {
+                "type": "posts",
+                "limit": 2,
+                "status": [
+                    "publish"
+                ]
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "notes": "Disparador: Se activa cada vez que se publica un nuevo 'post' en WordPress. Asegúrate de conectar tu cuenta de WordPress y seleccionar el estado 'Publish'."
+            }
+        },
+        {
+            "id": 2,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "model": "gpt-4-turbo",
+                "select": "chat",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "Actúa como un experto en marketing de contenidos. Tu tarea es crear dos publicaciones para redes sociales basadas en el siguiente artículo de blog. El tono debe ser profesional pero atractivo, animando a los lectores a hacer clic en el enlace.\n\nEl artículo es:\nTítulo: {{1.title}}\nEnlace: {{1.link}}\nContenido: {{stripHTML(1.content)}}\n\nCrea una publicación para una página de Facebook y otra para un perfil de LinkedIn. Usa hashtags relevantes para cada plataforma. NO incluyas el enlace en el texto del post, ya que se añadirá por separado. Estructura tu respuesta EXACTAMENTE así, sin texto adicional:\n\nFACEBOOK_POST:\n[Texto del post para Facebook aquí]\n\nLINKEDIN_POST:\n[Texto del post para LinkedIn aquí]"
+                    }
+                ],
+                "max_tokens": "800",
+                "temperature": "0.7"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "notes": "Generador de Contenido IA: Toma los datos del post de WordPress y los envía a OpenAI para crear los textos de las publicaciones. La función stripHTML() limpia el contenido del post para enviarlo como texto plano a la IA."
+            }
+        },
+        {
+            "id": 3,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "notes": "Enrutador: Divide el flujo en dos rutas independientes, una para Facebook y otra para LinkedIn, permitiendo que las publicaciones se realicen en paralelo."
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 4,
+                            "module": "facebook-pages:createPost",
+                            "version": 2,
+                            "parameters": {},
+                            "mapper": {
+                                "link": "{{1.link}}",
+                                "message": "{{trim(replace(get(split(2.choices[].message.content; \"LINKEDIN_POST:\"); 1); \"FACEBOOK_POST:\"; \"\"))}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": -150
+                                },
+                                "notes": "Publicar en Facebook: Conecta tu página de Facebook. El campo 'Message' utiliza una fórmula para extraer solo el texto de Facebook generado por la IA. El campo 'Link' asegura que se genere una vista previa del artículo."
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 5,
+                            "module": "linkedin:createPost",
+                            "version": 2,
+                            "parameters": {},
+                            "mapper": {
+                                "content": "{{trim(get(split(2.choices[].message.content; \"LINKEDIN_POST:\"); 2))}}\n\nLee el artículo completo aquí: {{1.link}}",
+                                "visibility": "PUBLIC"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": 150
+                                },
+                                "notes": "Publicar en LinkedIn: Conecta tu perfil de LinkedIn. El campo 'Content' utiliza una fórmula para extraer el texto de LinkedIn generado por la IA y añade el enlace al final."
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true
+        },
+        "designer": {
+            "orphans": []
+        },
+        "notes": [
+            {
+                "text": "### Instrucciones de Configuración\n\n1.  **Importar Blueprint**: En Make.com, ve a 'Scenarios' y haz clic en 'Create a new scenario'. En la esquina inferior derecha, haz clic en 'More' (tres puntos) y luego en 'Import Blueprint'. Pega el código JSON proporcionado.\n2.  **Conectar Cuentas**: Haz clic en cada módulo que tenga un signo de exclamación (WordPress, OpenAI, Facebook Pages, LinkedIn) y conecta tus cuentas correspondientes.\n3.  **Personalizar Módulos**:\n    * **WordPress**: Asegúrate de que la conexión sea la correcta.\n    * **OpenAI**: No requiere cambios si estás de acuerdo con el prompt.\n    * **Facebook Pages**: Selecciona la página específica donde deseas publicar.\n    * **LinkedIn**: Confirma que el autor de la publicación es tu perfil.\n4.  **Activar el Escenario**: Una vez configurado, guarda los cambios y activa el escenario (botón ON/OFF en la parte inferior izquierda). ¡Listo!"
+            }
+        ]
+    }
+}

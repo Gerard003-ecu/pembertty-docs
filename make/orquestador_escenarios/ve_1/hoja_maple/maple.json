@@ -1,0 +1,154 @@
+{
+    "name": "Propagación Internacional VE1 - Hoja de Maple",
+    "flow": [
+        {
+            "id": 1,
+            "module": "google-sheets:watchRows",
+            "version": 2,
+            "parameters": {
+                "limit": 1,
+                "spreadsheetId": "",
+                "sheetId": "Ideas de Contenido VE1",
+                "includesHeaders": true
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "notes": "Disparador (Trigger): Se activa cuando se añade una nueva fila a la hoja 'Ideas de Contenido VE1'. Debes seleccionar tu Spreadsheet ID y asegurarte de que la hoja de cálculo contenga las columnas: 'Idea_Central', 'Tipo_de_Contenido' y 'Hashtags_Sugeridos'."
+            }
+        },
+        {
+            "id": 2,
+            "module": "openai-gpt-3:createCompletion",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "model": "gpt-4-turbo",
+                "select": "chat",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "Actúa como un experto en marketing de contenidos para la marca Pembertty, que enseña a tallar velas artesanales. El público objetivo son mujeres creativas y emprendedoras de 30 a 55 años a nivel internacional. La idea central para el contenido es: '{{1.Idea_Central}}'.\n\nGenera 3 piezas de contenido optimizadas para promocionar nuestro curso online 'Hoja de Maple Tallada en una Vela'.\n\n1.  **Post para Facebook:** Enfócate en la comunidad y los beneficios terapéuticos[cite: 92]. Debe ser inspirador y cercano.\n2.  **Post para Instagram:** Sé más visual y directo. Incluye un llamado a la acción claro para el curso.\n3.  **Guion para TikTok/Reel (30-45s):** Crea un guion dinámico con sugerencias de escenas visuales (ej. 'Escena 1: ...').\n\nIncorpora estos hashtags sugeridos: {{1.Hashtags_Sugeridos}} y añade otros relevantes para el mercado internacional (ej. #CandleCarving, #DIYCrafts, #CreativeBusiness, #ArtTherapy).\n\nEstructura tu respuesta EXACTAMENTE así, sin texto adicional:\n\nFACEBOOK_POST::\n[Texto del post para Facebook aquí]\n\nINSTAGRAM_POST::\n[Texto del post para Instagram aquí]\n\nTIKTOK_SCRIPT::\n[Guion del video para TikTok/Reel aquí]"
+                    }
+                ],
+                "max_tokens": 1200,
+                "temperature": 0.8
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "notes": "Acción 1 (Generador de Texto): Toma la 'Idea_Central' de Google Sheets y crea 3 piezas de contenido (Facebook, Instagram, Guion de TikTok) en una sola llamada. El prompt está cuidadosamente diseñado para hablarle al buyer persona 'María emprendedora'[cite: 97]."
+            }
+        },
+        {
+            "id": 3,
+            "module": "openai-dall-e:generateImage",
+            "version": 2,
+            "parameters": {},
+            "mapper": {
+                "prompt": "Fotografía de producto de alta calidad, estilo cinematográfico. Una vela artesanal exquisitamente tallada a mano con un diseño de hoja de maple. La iluminación es suave y dramática, destacando la textura de la cera y la precisión del tallado. El fondo es oscuro y elegante. Estilo coherente con la marca Pembertty, que valora el arte y el lujo artesanal[cite: 79]. Idea base: {{1.Idea_Central}}.",
+                "size": "1024x1024",
+                "quality": "hd",
+                "n": 1,
+                "style": "vivid"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 200
+                },
+                "notes": "Acción 2 (Generador de Imagen): Crea una imagen de alta calidad con DALL-E basada en la 'Idea_Central'. El prompt está diseñado para generar una imagen que refleje la calidad, el detalle y la estética exclusiva de Pembertty[cite: 79]."
+            }
+        },
+        {
+            "id": 4,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "notes": "Enrutador (Router): Una vez generados el texto y la imagen, este módulo divide el flujo en 3 rutas paralelas para publicar en cada plataforma o notificar."
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 5,
+                            "module": "facebook-pages:uploadPhoto",
+                            "version": 2,
+                            "mapper": {
+                                "page": "YOUR_PAGE_ID",
+                                "caption": "{{trim(get(split(2.choices[].message.content; \"INSTAGRAM_POST::\"); 1); \"FACEBOOK_POST::\"))}}\n\n✨ ¿Lista para convertir tu pasión en tu próximo emprendimiento? Aprende a crear esta maravilla en nuestro curso digital. ¡Inscríbete hoy!\n\nEnlace al curso: [TU_ENLACE_DE_HOTMART_AQUÍ]",
+                                "source": "{{3.data}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": -150
+                                },
+                                "notes": "Ruta 1 (Facebook): Publica la imagen de DALL-E y el texto generado para Facebook. Una fórmula extrae el contenido específico. **ACCIÓN REQUERIDA**: Selecciona tu página de Facebook y pega tu enlace de afiliado de Hotmart."
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 6,
+                            "module": "instagram-business:createPhotoPost",
+                            "version": 1,
+                            "mapper": {
+                                "accountId": "YOUR_ACCOUNT_ID",
+                                "image_url": "{{3.url}}",
+                                "caption": "{{trim(get(split(get(split(2.choices[].message.content; \"TIKTOK_SCRIPT::\"); 1); \"INSTAGRAM_POST::\"); 2))}}\n\n-\n-\n-\n#Pembertty #VelasArtesanales #TalladoDeVelas #EmprendimientoCreativo #HechoAMano\n\nLink en la BIO para inscribirte en el curso 'Hoja de Maple Tallada en una Vela' y empezar tu viaje creativo. ✨"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": 0
+                                },
+                                "notes": "Ruta 2 (Instagram): Publica la imagen de DALL-E y el caption para Instagram. **ACCIÓN REQUERIDA**: Selecciona tu cuenta de Instagram for Business. Recuerda que el enlace debe estar en tu biografía."
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 7,
+                            "module": "slack:createMessage",
+                            "version": 4,
+                            "mapper": {
+                                "channel": "YOUR_CHANNEL_ID",
+                                "text": "*¡Nuevo Guion de TikTok/Reel Listo para Grabar!* 🎬\n\n**Idea Central:** {{1.Idea_Central}}\n\n--- GUION ---\n{{trim(get(split(2.choices[].message.content; \"TIKTOK_SCRIPT::\"); 2))}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": 150
+                                },
+                                "notes": "Ruta 3 (Notificación TikTok): Envía el guion generado a un canal de Slack. Esto crea una tarea para el equipo de contenido. **ACCIÓN REQUERIDA**: Selecciona tu canal de Slack deseado."
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true
+        }
+    }
+}
