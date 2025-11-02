@@ -4,124 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pembertty: Arte en Velas Talladas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pembertty-blue': '#003B46',
+                        'pembertty-mustard': '#FFDB58',
+                        'pembertty-light-gray': '#F0F0F0',
+                        'pembertty-dark-gray': '#334155',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Tailwind: bg-slate-50 */
-            color: #334155; /* Tailwind: text-slate-700 */
+            font-family: 'Inter', 'sans-serif';
+            background-color: #F0F0F0;
+            color: #334155;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', 'serif';
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased font-sans">
     <div class="min-h-screen flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
-        <header class="w-full max-w-7xl mx-auto flex justify-between items-center py-6 px-4 bg-white rounded-xl shadow-lg mb-10">
-            <h1 class="text-3xl font-bold text-gray-800">Pembertty</h1>
+        <header class="w-full max-w-7xl mx-auto flex justify-between items-center py-4 px-6 bg-white rounded-xl shadow-lg mb-10">
+            <a href="#">
+                <img src="https://i.ibb.co/8ny4MqgY/logo-talla-pembertty-2.png" alt="Pembertty Logo" class="h-12">
+            </a>
             <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#propuesta" class="text-gray-600 hover:text-gray-900 font-medium">Propuesta de Valor</a></li>
-                    <li><a href="#lenguaje" class="text-gray-600 hover:text-gray-900 font-medium">Lenguaje de Marca</a></li>
-                    <li><a href="#modelo" class="text-gray-600 hover:text-gray-900 font-medium">Nuestro Modelo</a></li>
-                    <li><a href="#migracion" class="text-gray-600 hover:text-gray-900 font-medium">Innovación</a></li>
+                <ul class="flex space-x-8">
+                    <li><a href="#propuesta" class="text-pembertty-dark-gray hover:text-pembertty-mustard font-medium transition-colors duration-300">Propuesta</a></li>
+                    <li><a href="#lenguaje" class="text-pembertty-dark-gray hover:text-pembertty-mustard font-medium transition-colors duration-300">Lenguaje</a></li>
+                    <li><a href="#artista" class="text-pembertty-dark-gray hover:text-pembertty-mustard font-medium transition-colors duration-300">Artista</a></li>
+                    <li><a href="#innovacion" class="text-pembertty-dark-gray hover:text-pembertty-mustard font-medium transition-colors duration-300">Innovación</a></li>
                 </ul>
             </nav>
         </header>
 
         <!-- Hero Section -->
-        <section class="w-full max-w-7xl mx-auto bg-gradient-to-r from-yellow-300 to-amber-500 text-white p-12 rounded-xl shadow-xl flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-8 mb-10">
+        <section class="w-full max-w-7xl mx-auto bg-pembertty-blue text-white p-12 rounded-xl shadow-xl flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-12 mb-10">
             <div class="md:w-1/2 text-center md:text-left">
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
-                    Pembertty: El Arte de Tallar la Luz
+                <h2 class="text-5xl lg:text-6xl font-serif font-bold leading-tight mb-4">
+                    Arte que Transforma: Aprende a Crear o Déjanos Diseñar para Ti
                 </h2>
-                <p class="text-lg sm:text-xl mb-6 opacity-90">
-                    Descubre la pasión y la maestría de 20 años en la creación de velas artesanales, diseñadas para transformar tus espacios con luz y arte.
+                <p class="text-lg sm:text-xl mb-6 opacity-90 font-sans">
+                    Somos un conjunto ordenado de técnicas mixtas para diseñar, a través del arte, el modelado de materiales como la parafina. Pembertty productos funcionales para decorar e iluminar.
                 </p>
-                <a href="#propuesta" class="inline-block bg-white text-amber-600 hover:bg-gray-100 px-8 py-3 rounded-full text-lg font-semibold shadow-md transition duration-300">
-                    Conoce Más
+                <a href="#propuesta" class="inline-block bg-pembertty-mustard text-pembertty-blue hover:bg-yellow-400 px-8 py-3 rounded-full text-lg font-semibold shadow-md transition duration-300">
+                    Explora las Posibilidades
                 </a>
             </div>
             <div class="md:w-1/2 flex justify-center">
-                <img src="https://placehold.co/400x300/FDBA74/FFFFFF?text=Vela+Tallada+Pembertty" alt="Vela Artesanal Tallada Pembertty" class="rounded-lg shadow-xl max-w-full h-auto">
+                <img src="https://i.ibb.co/XfWJK6Zv/Whisk-ce80636b1ed2a0187ec4c5deff252311dr.jpg" alt="Artista de Pembertty encendiendo una vela tallada a mano" class="rounded-lg shadow-xl w-full h-auto object-cover" style="max-height: 400px;">
             </div>
         </section>
 
         <!-- Value Proposition Section -->
         <section id="propuesta" class="w-full max-w-7xl mx-auto bg-white p-10 rounded-xl shadow-lg mb-10">
-            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">Nuestra Propuesta de Valor</h3>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="flex items-start space-x-4">
-                    <div class="flex-shrink-0">
-                        <span class="bg-amber-100 text-amber-600 p-3 rounded-full text-2xl">🕯️</span>
-                    </div>
-                    <div>
-                        <h4 class="text-2xl font-semibold text-gray-800 mb-2">Maestría Artesanal de 20 Años</h4>
-                        <p class="text-gray-600">
-                            Cada vela Pembertty es el resultado de dos décadas de experiencia y pasión, garantizando una pieza única con un acabado impecable y un diseño excepcional. No solo es una vela, es una obra de arte.
-                        </p>
-                    </div>
+            <h3 class="text-4xl font-serif font-bold text-pembertty-dark-gray mb-10 text-center">Un Ecosistema de Creatividad</h3>
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Te Enseño -->
+                <div class="bg-pembertty-light-gray p-6 rounded-lg">
+                    <h4 class="text-2xl font-serif font-bold text-pembertty-blue mb-3">Te Enseño: Terapia Creativa</h4>
+                    <p class="font-sans text-pembertty-dark-gray">
+                        Aprende con una terapia creativa. Nuestra metodología y kits de formación permiten convertir la parafina en una vela tallada con estilo propio, una experiencia que transforma tu tiempo libre en arte y bienestar.
+                    </p>
                 </div>
-                <div class="flex items-start space-x-4">
-                    <div class="flex-shrink-0">
-                        <span class="bg-amber-100 text-amber-600 p-3 rounded-full text-2xl">✨</span>
-                    </div>
-                    <div>
-                        <h4 class="text-2xl font-semibold text-gray-800 mb-2">Calidad Superior en Cada Detalle</h4>
-                        <p class="text-gray-600">
-                            Utilizamos parafina de alta calidad (china 60-62°C o egipcia 62°C) y el aditivo VI-BAR para asegurar una combustión limpia, un color vibrante y una estructura perfecta.
-                        </p>
-                    </div>
+                <div class="bg-pembertty-light-gray p-6 rounded-lg">
+                    <h4 class="text-2xl font-serif font-bold text-pembertty-blue mb-3">Te Enseño: Potencial de Negocio</h4>
+                    <p class="font-sans text-pembertty-dark-gray">
+                        Convierte tu pasión en una oportunidad. Te guiamos para que desarrolles una habilidad única y sientes las bases de tu propio emprendimiento artesanal con piezas exclusivas.
+                    </p>
                 </div>
-                <div class="flex items-start space-x-4">
-                    <div class="flex-shrink-0">
-                        <span class="bg-amber-100 text-amber-600 p-3 rounded-full text-2xl">🎨</span>
-                    </div>
-                    <div>
-                        <h4 class="text-2xl font-semibold text-gray-800 mb-2">Velones Listos para Tallar y Esculpir</h4>
-                        <p class="text-gray-600">
-                            Nuestras velas cilíndricas están especialmente preparadas para ser intervenidas artísticamente, permitiendo que la creatividad fluya y se transforme en piezas decorativas o esculturas de luz.
-                        </p>
-                    </div>
+                <!-- Te Hago -->
+                <div class="bg-pembertty-light-gray p-6 rounded-lg">
+                    <h4 class="text-2xl font-serif font-bold text-pembertty-blue mb-3">Te Hago: Arte para Decorar</h4>
+                    <p class="font-sans text-pembertty-dark-gray">
+                        Productos funcionales para decorar e iluminar, soluciones integrales que comunican destreza, experiencia y diseños sofisticados. Pembertty, el arte de modelar materiales.
+                    </p>
                 </div>
-                <div class="flex items-start space-x-4">
-                    <div class="flex-shrink-0">
-                        <span class="bg-amber-100 text-amber-600 p-3 rounded-full text-2xl">🌍</span>
-                    </div>
-                    <div>
-                        <h4 class="text-2xl font-semibold text-gray-800 mb-2">Innovación Constante en Materiales</h4>
-                        <p class="text-gray-600">
-                            Estamos migrando hacia el uso de moldería con silicona para garantizar una réplica aún más precisa de nuestros diseños y una producción sostenible sin comprometer la calidad artesanal.
-                        </p>
-                    </div>
+                <div class="bg-pembertty-light-gray p-6 rounded-lg">
+                    <h4 class="text-2xl font-serif font-bold text-pembertty-blue mb-3">Te Hago: Soluciones para Eventos</h4>
+                    <p class="font-sans text-pembertty-dark-gray">
+                        Creamos piezas de alto impacto para eventos corporativos, bodas y ocasiones especiales. Velas personalizadas que cuentan una historia y se convierten en el centro de todas las miradas.
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- Brand Language Section -->
-        <section id="lenguaje" class="w-full max-w-7xl mx-auto bg-gray-100 p-10 rounded-xl shadow-lg mb-10">
-            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">El Lenguaje de Marca Pembertty: Arte que Ilumina</h3>
+        <section id="lenguaje" class="w-full max-w-7xl mx-auto bg-pembertty-light-gray p-10 rounded-xl shadow-lg mb-10">
+            <h3 class="text-4xl font-serif font-bold text-pembertty-dark-gray mb-8 text-center">El Lenguaje de Marca Pembertty</h3>
             <div class="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
-                <div class="md:w-1/2 text-center md:text-left">
-                    <p class="text-gray-700 text-lg mb-6">
-                        El lenguaje de marca de Pembertty se comunica a través de cada curva, cada línea y cada detalle tallado en nuestras velas. Es un diálogo entre la tradición artesanal y la expresión artística contemporánea.
+                <div class="md:w-1/2 text-left">
+                    <p class="font-sans text-pembertty-dark-gray text-lg mb-6">
+                        El lenguaje de Pembertty se comunica a través de cada curva y detalle tallado. Es un diálogo entre la tradición artesanal y la expresión artística contemporánea.
                     </p>
-                    <ul class="list-disc list-inside text-gray-600 space-y-3 text-lg">
-                        <li>**Fidelidad al Detalle:** Cada tallado es una expresión de precisión y maestría.</li>
-                        <li>**Simbolismo de la Luz:** La vela, más allá de su forma, representa calidez y transformación.</li>
-                        <li>**Conexión Artesanal:** Resaltamos la mano del artista, el proceso manual y la experiencia que se infunde en cada pieza.</li>
-                        <li>**Exclusividad y Autenticidad:** Ofrecemos piezas únicas que evocan emociones y se convierten en el centro de atención.</li>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start"><span class="text-pembertty-mustard mr-3 mt-1">◆</span><span class="font-sans text-pembertty-dark-gray"><strong>Fidelidad al Detalle:</strong> Cada tallado es una expresión de precisión y maestría.</span></li>
+                        <li class="flex items-start"><span class="text-pembertty-mustard mr-3 mt-1">◆</span><span class="font-sans text-pembertty-dark-gray"><strong>Simbolismo de la Luz:</strong> La vela representa calidez y transformación.</span></li>
+                        <li class="flex items-start"><span class="text-pembertty-mustard mr-3 mt-1">◆</span><span class="font-sans text-pembertty-dark-gray"><strong>Conexión Artesanal:</strong> Resaltamos la mano del artista y el proceso manual.</span></li>
+                        <li class="flex items-start"><span class="text-pembertty-mustard mr-3 mt-1">◆</span><span class="font-sans text-pembertty-dark-gray"><strong>Exclusividad y Autenticidad:</strong> Piezas únicas que evocan emociones.</span></li>
                     </ul>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <img src="https://placehold.co/400x300/D1D5DB/1F2937?text=Detalle+Tallado+Vela" alt="Detalle de tallado en vela Pembertty" class="rounded-lg shadow-xl max-w-full h-auto">
+                    <img src="https://i.ibb.co/JjYfgbjC/Whisk-3b5ccbf1c96ace8a1f4481a8b4421d98dr-1.jpg" alt="Vela Mulata, un producto destacado de Pembertty" class="rounded-lg shadow-xl w-full h-auto object-cover" style="max-height: 450px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Artist Section -->
+        <section id="artista" class="w-full max-w-7xl mx-auto bg-white p-10 rounded-xl shadow-lg mb-10">
+            <div class="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
+                <div class="md:w-1/3 flex justify-center">
+                    <img src="https://i.ibb.co/kVgPZxJR/Whats-App-Image-2025-10-27-at-15-29-39.jpg" alt="Edier, el artista detrás de Pembertty" class="rounded-full shadow-xl w-64 h-64 object-cover">
+                </div>
+                <div class="md:w-2/3 text-left">
+                    <h3 class="text-4xl font-serif font-bold text-pembertty-dark-gray mb-4">El Corazón de Pembertty: Nuestro Artista</h3>
+                    <p class="font-sans text-pembertty-dark-gray text-lg">
+                        Con más de 20 años de experiencia, Edier es el alma y las manos detrás de cada creación de Pembertty. Su pasión por el modelado de la parafina y su dedicación a la perfección son la base de nuestro lenguaje de marca. Cada pieza es un reflejo de su maestría y su profundo amor por el arte de iluminar.
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- Business Model Section -->
         <section id="modelo" class="w-full max-w-7xl mx-auto bg-white p-10 rounded-xl shadow-lg mb-10">
-            <h3 class="text-4xl font-bold text-gray-800 mb-8 text-center">Nuestro Modelo de Negocio: El "Cómo" de Pembertty</h3>
+            <h3 class="text-4xl font-serif font-bold text-pembertty-dark-gray mb-8 text-center">Nuestro Modelo de Negocio: El "Cómo" de Pembertty</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="flex flex-col items-center text-center p-6 bg-amber-50 rounded-lg shadow-sm">
                     <div class="bg-amber-200 p-4 rounded-full mb-4">
@@ -154,30 +176,29 @@
         </section>
 
         <!-- Migration Strategy Section -->
-        <section id="migracion" class="w-full max-w-7xl mx-auto bg-gradient-to-br from-blue-300 to-sky-500 text-white p-10 rounded-xl shadow-xl flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-12 mb-10">
-            <div class="md:w-1/2 text-center md:text-left">
-                <h3 class="text-4xl font-bold mb-6">Innovación en Moldería: Hacia la Silicona</h3>
-                <p class="text-lg mb-6 opacity-90">
-                    Pembertty está en constante evolución. Estamos migrando hacia la creación de moldes de silicona a partir de nuestras matrices de parafina talladas. Esta estrategia nos permite:
+        <section id="innovacion" class="w-full max-w-7xl mx-auto bg-gradient-to-br from-pembertty-blue to-[#005F73] text-white p-12 rounded-xl shadow-xl flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-12 mb-10">
+            <div class="md:w-1/2 text-left">
+                <h3 class="text-4xl font-serif font-bold mb-6">Innovación en Moldería: Hacia la Silicona</h3>
+                <p class="font-sans text-lg mb-6 opacity-90">
+                    La transición a moldes de silicona aumenta la eficiencia y durabilidad, permitiendo replicar diseños complejos con una fidelidad excepcional. La calidad del molde es un reflejo directo de la maestría en la matriz de parafina.
                 </p>
-                <ul class="list-disc list-inside text-lg space-y-3 opacity-95">
-                    <li>**Replicar con Precisión:** Capturar cada detalle de nuestros intrincados tallados.</li>
-                    <li>**Mejorar la Consistencia:** Asegurar la uniformidad en la forma y textura de cada velón.</li>
-                    <li>**Escalabilidad Sostenible:** Aumentar nuestra capacidad de producción sin comprometer la calidad artesanal.</li>
-                    <li>**Durabilidad del Molde:** Utilizar silicona de adición (platino) para moldes de larga vida útil.</li>
+                <ul class="space-y-3 text-lg">
+                    <li class="flex items-start"><span class="text-pembertty-mustard mr-3 mt-1">◆</span><span class="font-sans"><strong>Fidelidad de Diseño:</strong> Replicación de detalles finos superior al PVC.</span></li>
+                    <li class="flex items-start"><span class="text-pembertty-mustard mr-3 mt-1">◆</span><span class="font-sans"><strong>Eficiencia y Durabilidad:</strong> Moldes con una vida útil de décadas.</span></li>
+                    <li class="flex items-start"><span class="text-pembertty-mustard mr-3 mt-1">◆</span><span class="font-sans"><strong>Alineación de Calidad:</strong> La perfección de la matriz se traduce al molde.</span></li>
                 </ul>
             </div>
             <div class="md:w-1/2 flex justify-center">
-                <img src="https://placehold.co/400x300/93C5FD/FFFFFF?text=Molde+Silicona" alt="Imagen de Molde de Silicona" class="rounded-lg shadow-xl max-w-full h-auto">
+                <img src="https://placehold.co/400x300/003B46/FFFFFF?text=Molde+de+Silicona+Artesanal" alt="Molde de silicona para velas artesanales" class="rounded-lg shadow-xl max-w-full h-auto">
             </div>
         </section>
 
         <!-- Footer Section -->
-        <footer class="w-full max-w-7xl mx-auto bg-gray-800 text-white p-8 rounded-xl shadow-lg text-center">
-            <p class="mb-4">&copy; 2025 Pembertty. Todos los derechos reservados.</p>
-            <p>
+        <footer class="w-full max-w-7xl mx-auto bg-pembertty-blue text-white p-8 rounded-xl shadow-lg text-center">
+            <p class="mb-4 font-sans">&copy; 2025 Pembertty. Todos los derechos reservados.</p>
+            <p class="font-sans">
                 Para consultas o pedidos personalizados, contáctanos en:
-                <a href="mailto:info@pembertty.com" class="text-amber-400 hover:underline">info@pembertty.com</a>
+                <a href="mailto:info@pembertty.com" class="text-pembertty-mustard hover:underline font-semibold">info@pembertty.com</a>
             </p>
         </footer>
     </div>
