@@ -9,7 +9,7 @@ Este documento detalla el modelo de negocio de Pembertty, un ecosistema integral
 ### 1. Propuesta de Valor
 
 **Propuesta de Valor Central:**
-> Somos un conjunto ordenado de técnicas interdisciplinarias para diseñar, a través del arte, la intervención y conversión de materiales en productos funcionales para decorar e iluminar. **Pembertty, edificando experiencias que transforman.**
+> Somos un conjunto ordenado de técnicas interdisciplinarias para diseñar, a través del arte, la intervención y conversión de materiales en productos funcionales para decorar e iluminar. **Pembertty, más que moldear una vela es tallar una experiencia**
 
 **Tagline Estratégico:**
 > Pembertty: alto diseño en parafina, arte para aprender, decorar e iluminar.
