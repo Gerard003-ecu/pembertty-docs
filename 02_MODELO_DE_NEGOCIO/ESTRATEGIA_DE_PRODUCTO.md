@@ -45,7 +45,7 @@ El objetivo final de toda la estructura es construir y fortalecer el valor de la
 
 *   **El Ápice representa:**
     *   **La Reputación:** Ser reconocidos como el referente en "Alto Diseño en Parafina".
-    *   **La Lealtad del Cliente:** Tanto de los estudiantes que aman nuestra metodología como de los clientes B2B que confían en nuestra calidad y exclusividad.
+    *   **La Lealtad del Cliente:** Tanto de los estudiantes que aman nuestra metodología de terapia creativa como de los clientes B2B que confían en nuestras alternativas de lujo silencioso.
     *   **La Rentabilidad Sostenible:** El resultado financiero de un ecosistema de productos y servicios bien estructurado y diversificado.
 
 ---
