@@ -11,7 +11,7 @@ Esta es la síntesis de nuestra existencia. Cada palabra define un pilar de nues
 
 ---
 
-## 2. La Filosofía Pembertty: "Alta Costura en Cera"
+## 2. La Filosofía Pembertty: "Alta Diseño en Cera"
 
 No creamos simples velas; creamos **"Alto Estilo"**. Nuestra filosofía se inspira en la Alta Costura:
 
